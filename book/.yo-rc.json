@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.my.book",
+      "nativeLanguage": "ko"
+    },
+    "jhipsterVersion": "6.9.1",
+    "applicationType": "microservice",
+    "baseName": "book",
+    "packageName": "com.my.book",
+    "packageFolder": "com/my/book",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mariadb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZGE2NDJlY2I4NjEyZThjNjk0YTAxN2MwYzRhYmFjMTAwNWY0YWJmZTZjNzE5MjMyNTVjNTZlNWE0YTg2Zjg3ZGVmYmZjMzc2NmRlM2YwYTkxNzViOTNkMzVjOWViY2Y4ZWNmZTAzMWNkMjBmNWYyODUxODYwZjYzYTJkZmE0YjE=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1626259663203,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "ko",
+    "languages": ["ko"],
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
