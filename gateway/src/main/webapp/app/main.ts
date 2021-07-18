@@ -31,6 +31,9 @@ import GatewayService from '@/admin/gateway/gateway.service';
 
 /* tslint:disable */
 
+import RentalService from '@/entities/rental/rental/rental.service';
+import BookService from '@/entities/book/book/book.service';
+import BookCatalogService from '@/entities/bookCatalog/book-catalog/book-catalog.service';
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
 
 /* tslint:enable */
@@ -95,6 +98,9 @@ new Vue({
     metricsService: () => new MetricsService(),
     alertService: () => alertService,
     translationService: () => translationService,
+    rentalService: () => new RentalService(),
+    bookService: () => new BookService(),
+    bookCatalogService: () => new BookCatalogService(),
     // jhipster-needle-add-entity-service-to-main - JHipster will import entities services here
     accountService: () => accountService,
   },

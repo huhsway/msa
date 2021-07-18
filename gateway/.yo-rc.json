@@ -2,7 +2,8 @@
   "generator-jhipster": {
     "promptValues": {
       "packageName": "com.my.gateway",
-      "nativeLanguage": "ko"
+      "nativeLanguage": "ko",
+      "microservicePath": "C:\\workspace\\msa\\bookCatalog"
     },
     "jhipsterVersion": "6.9.1",
     "applicationType": "gateway",
