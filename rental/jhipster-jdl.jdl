@@ -1,0 +1,33 @@
+// 대출
+entity Rental {
+	id Long,
+    userId Long,
+    rentalStatus RentalStatus // 대출 가능 여부
+}
+
+// 대출된 도서
+entity RentedItem {
+	id Long,
+    bookId Long,
+    rentedDate LocalDate,
+    dueDate LocalDate
+}
+
+// 대출 가는 여부(대출 가능, 대출 불가능)
+enum RentalStatus {
+	RENT_AVAILABLE, RENT_UNAVAILABLE
+}
+
+// defining multiple ManyToOne relationships with comments
+relationship ManyToOne {
+	RentedItem{rental} to Rental
+}
+
+// Set pagination options
+paginate * with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl

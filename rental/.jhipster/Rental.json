@@ -1,0 +1,27 @@
+{
+  "name": "Rental",
+  "fields": [
+    {
+      "fieldName": "userId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "rentalStatus",
+      "fieldType": "RentalStatus",
+      "fieldValues": "RENT_AVAILABLE,RENT_UNAVAILABLE"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210718053708",
+  "entityTableName": "rental",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "rental",
+  "applications": "*",
+  "microserviceName": "rental"
+}
