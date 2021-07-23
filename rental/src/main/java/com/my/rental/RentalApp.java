@@ -22,6 +22,8 @@ import java.util.Collection;
 
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
+@EnableDiscoveryClient
+@EnableFeignClients
 public class RentalApp {
 
     private static final Logger log = LoggerFactory.getLogger(RentalApp.class);

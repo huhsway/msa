@@ -140,4 +140,12 @@ public class BookResource {
         bookService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/books/bookInfo/{bookId}")
+    public ResponseEntity<BookInfoDTO> findBookInfo(@PathVariable("bookId") Long bookId){
+        Book book = bookService.findBookInfo(bookId);
+        BookInfoDTO bookInfoDTO = new BookInfoDTO(bookId, book.getTitle());
+        log.debug(bookInfoDTO.toString());
+        return ResponseEntity.ok().body(bookInfoDTO);
+    }
 }
