@@ -86,4 +86,44 @@ public class RentalServiceImpl implements RentalService {
         log.debug("Request to delete Rental : {}", id);
         rentalRepository.deleteById(id);
     }
+
+    //도서 대출 처리 구현
+    @Transactional
+    public Rental rentBook(Long userId, Long bookId, String bookTitle) throws InterruptedException, ExecutionException, JsonProcessingException, RentUnavailableException {
+        log.debug("Rent Books by : ", userId, " Book List : ", bookId + bookTitle);
+        Rental rental = rentalRepository.findByUserId(userId).get();
+        rental.checkRentalAvailable();
+
+        rental = rental.rentBook(bookId, bookTitle);
+        rentalRepository.save(rental);
+
+        //도서 서비스엥 도서재고 감소를 위해 도서대출 이벤트 발송
+        rentalProducer.updateBookStatus(bookId, "UNAVAILABLE"); //send to book service
+
+        //도서 카탈로그 서비스에 대출된 도서로 상태를 변경하기 위한 이벤트 발송
+        rentalProducer.updateBookCatalogStatus(bookId, "RENT_BOOK"); //send to book catalog service
+
+        //대출로 인한 사용자 포잉ㄴ트 적립을 위해 사용자 서비스에 이벤트 발송
+        rentalProducer.savePoints(userId, pointPerBooks); //send to user service
+
+        return rental;
+
+    }
+
+    // 도서 반납 구현
+    @Transactional
+    public Rental returnBook(Long userId, Long bookId) throws ExecutionException, InterruptedException ,JsonProcessingException {
+        log.debug("Return books by ", userId, " Return Book List : ", bookId);
+        Rental rental = rentalRepository.findByUserId(userId).get(); //반납아이템 검색(1)
+        rental = rental.returnbook(bookId);                 //Rental에 반납 처리 위임(2)
+        rental = rentalRepository.save(rental);                         //Rental 저장(3)
+
+        //도서 서비스에 도서재고 증가를 위해 도서반납 이벤트 발송
+        rentalProducer.updateBookStatus(bookId, "AVAILABLE");                   //(4)
+        //도서 카탈로그 서비스에 대출 가능한 도서로 상태를 변경하기 위한 이벤트 발송
+        rentalProducer.updateBookCatalogStatus(bookId, "RETURN_BOOK");          //(4)
+
+        return rental;
+    }
+
 }

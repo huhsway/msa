@@ -43,4 +43,10 @@ public interface RentalService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    //도서 대출
+    Rental rentBook(Long userId, Long bookId, String bookTitle);
+
+    //도서 반납
+    Rental returnBooks(Long userId, Long bookId);
 }
